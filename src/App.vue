@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+    <v-app>
+        <NavBar />
+
+        <v-main>
+            <router-view />
+        </v-main>
+    </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue from 'vue';
+import { Component, Emit, Prop, Watch } from 'vue-property-decorator';
+import store, { STORE_KEY } from '@/store/store';
+import { getModule } from 'vuex-module-decorators';
 
-#nav {
-  padding: 30px;
+@Component({
+    components: {
+        NavBar: () => import('@/components/NavBar/NavBar.vue'),
+        HomePage: () => import('@/views/HomePage.vue'),
+        JobSearch: () => import('@/views/JobSearch.vue'),
+    },
+})
+export default class App extends Vue {
+    storeModule: any;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    created() {
+        const isModuleRegistered = Object.keys(this.$store.state).includes(STORE_KEY);
+        if (!isModuleRegistered) this.$store.registerModule(STORE_KEY, store);
+        if (!this.storeModule) this.storeModule = getModule(store, this.$store);
     }
-  }
 }
-</style>
+</script>
