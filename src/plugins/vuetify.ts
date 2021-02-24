@@ -4,20 +4,32 @@ import Vuetify from 'vuetify/lib/framework';
 Vue.use(Vuetify);
 
 export default new Vuetify({
-  theme: {
-      options: {
-        customProperties: true,
-      },
-    themes: {
-      light: {
-        primary: '#ee44aa',
-        secondary: '#424242',
-        accent: '#82B1FF',
-        error: '#FF5252',
-        info: '#2196F3',
-        success: '#4CAF50',
-        warning: '#FFC107'
-      },
+    theme: {
+        dark: false,
+        options: {
+            customProperties: true,
+        },
+        themes: {
+            light: {
+                headerPrimary: '#5865E0',
+                primary: '#F5F6F8',
+                secondary: '#FFFFFF',
+                accent: '#82B1FF',
+                error: '#FF5252',
+                info: '#2196F3',
+                success: '#4CAF50',
+                warning: '#FFC107',
+            },
+            dark: {
+                headerPrimary: '#5865E0',
+                primary: '#131822',
+                secondary: '#19212D',
+                accent: '#3949AB',
+                error: '#FF5252',
+                info: '#2196F3',
+                success: '#4CAF50',
+                warning: '#FFC107',
+            },
+        },
     },
-  },
 });

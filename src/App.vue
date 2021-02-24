@@ -1,10 +1,11 @@
 <template>
     <v-app>
         <NavBar />
-
+        <SideBar />
         <v-main>
             <router-view />
         </v-main>
+        <Footer />
     </v-app>
 </template>
 
@@ -18,7 +19,9 @@ import { getModule } from 'vuex-module-decorators';
     components: {
         NavBar: () => import('@/components/NavBar/NavBar.vue'),
         HomePage: () => import('@/views/HomePage.vue'),
-        JobSearch: () => import('@/views/JobSearch.vue'),
+        JobSearch: () => import('@/components/JobSearch/JobSearch.vue'),
+        Footer: () => import('@/components/Footer/Footer.vue'),
+        SideBar: () => import('@/components/MobileView/SideBar.vue'),
     },
 })
 export default class App extends Vue {
