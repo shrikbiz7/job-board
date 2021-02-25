@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
     {
         path: '/search',
         name: 'jobSearch',
-        component: () => import('@/components/JobSearch/JobSearch.vue'),
+        component: () => import('@/views/JobBoard.vue'),
     },
 ];
 

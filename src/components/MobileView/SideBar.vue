@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component } from 'vue-property-decorator';
 import store from '@/store/store';
 import { getModule } from 'vuex-module-decorators';
 

@@ -9,8 +9,6 @@ export const STORE_KEY = '$_jobsearch';
     name: STORE_KEY,
 })
 export default class AppStore extends VuexModule {
-    darkTheme: object = DarkTheme;
-    lightTheme: object = LightTheme;
     isDarkTheme = false;
     isSideBar = false;
     gitJobData = {};
@@ -18,8 +16,8 @@ export default class AppStore extends VuexModule {
     isGitDataAvailable = false;
 
     @Mutation
-    changeStoreTheme() {
-        this.isDarkTheme = !this.isDarkTheme;
+    changeStoreTheme(data: boolean) {
+        this.isDarkTheme = data;
     }
 
     @Mutation
@@ -48,9 +46,7 @@ export default class AppStore extends VuexModule {
         let data: any;
         let dataError: Record<string, string> = {};
         try {
-            console.log(`🚀 -> AppStore -> getGitJobData -> getGitJobData`);
             data = api.getJobApi();
-            console.log(`🚀 -> AppStore -> getGitJobData -> data`, data);
             this.context.commit('isGitJobApiLoaded', true);
         } catch (e) {
             dataError = { serviceSegment: e };

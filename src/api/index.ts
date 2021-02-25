@@ -14,7 +14,6 @@ export default {
     // },
 
     getJobApi: () => {
-        console.log(`🚀 -> gÏithubJobData`, githubJobData);
         return githubJobData;
     },
 };

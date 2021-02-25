@@ -1,26 +1,26 @@
 <template>
     <v-app>
         <NavBar />
-        <SideBar />
-        <v-main>
-            <router-view />
-        </v-main>
-        <Footer />
+        <v-responsive class="overflow-y-auto" max-height="calc(100vh - 64px)">
+            <SideBar />
+            <v-main>
+                <router-view />
+            </v-main>
+            <Footer />
+        </v-responsive>
     </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Emit, Prop, Watch } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import store, { STORE_KEY } from '@/store/store';
 import { getModule } from 'vuex-module-decorators';
 
 @Component({
     components: {
-        NavBar: () => import('@/components/NavBar/NavBar.vue'),
-        HomePage: () => import('@/views/HomePage.vue'),
-        JobSearch: () => import('@/components/JobSearch/JobSearch.vue'),
-        Footer: () => import('@/components/Footer/Footer.vue'),
+        NavBar: () => import('@/components/NavBar.vue'),
+        Footer: () => import('@/components/Footer.vue'),
         SideBar: () => import('@/components/MobileView/SideBar.vue'),
     },
 })

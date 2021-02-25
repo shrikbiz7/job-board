@@ -1,58 +1,71 @@
 <template>
-    <div class="primary">
-        <table>
-            <thead>
-                <tr>
-                    <th>Logo</th>
-                    <th>Company Name</th>
-                    <th>Title</th>
-                    <th>Location</th>
-                    <th>Type</th>
-                    <th>URL</th>
-                    <th>Created On</th>
-                    <th>id</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="{ company, created_at, title, type, location, id, url, company_logo } in apiData" :key="id">
-                    <td>
-                        <v-img
-                            alt="Vuetify Logo"
-                            class="shrink mr-2"
-                            contain
-                            :src="company_logo"
-                            transition="scale-transition"
-                            maxWidth="45"
-                        />
-                    </td>
-                    <td>{{ company }}</td>
-                    <td>{{ title }}</td>
-                    <td>{{ location }}</td>
-                    <td>{{ type }}</td>
-                    <td>{{ url }}</td>
-                    <td>{{ created_at }}</td>
-                    <td>{{ id }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <v-app>
+        <v-main v-if="true" class="primary">
+            <v-card :loading="loading" class="mx-auto my-12" max-width="374" max-height="774">
+                <template slot="progress">
+                    <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+                </template>
+
+                <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+
+                <v-card-title>Cafe Badilico</v-card-title>
+
+                <v-card-text>
+                    <v-row align="center" class="mx-0">
+                        <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
+
+                        <div class="grey--text ml-4">
+                            4.5 (413)
+                        </div>
+                    </v-row>
+
+                    <div class="my-4 subtitle-1">
+                        $ • Italian, Cafe
+                    </div>
+
+                    <div>
+                        Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.
+                    </div>
+                </v-card-text>
+
+                <v-divider class="mx-4"></v-divider>
+
+                <v-card-title>Tonight's availability</v-card-title>
+
+                <v-card-text>
+                    <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
+                        <v-chip>5:30PM</v-chip>
+
+                        <v-chip>7:30PM</v-chip>
+
+                        <v-chip>8:00PM</v-chip>
+
+                        <v-chip>9:00PM</v-chip>
+                    </v-chip-group>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-btn color="deep-purple lighten-2" text @click="reserve">
+                        Reserve
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-main>
+    </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component } from 'vue-property-decorator';
 import { getModule } from 'vuex-module-decorators';
 import store from '@/store/store';
 
 @Component
 export default class HomePage extends Vue {
     storeModule: any;
-    apiData: any;
 
     async created() {
         if (!this.storeModule) this.storeModule = getModule(store, this.$store);
-        this.storeModule.getGitJobData();
-        this.apiData = this.storeModule.gitJobData;
     }
 }
 </script>

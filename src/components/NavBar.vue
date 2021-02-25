@@ -1,6 +1,6 @@
 <template>
-    <v-app-bar elevate-on-scroll class="headerPrimary" :dark="this.storeModule.isDarkTheme">
-        <v-app-bar-nav-icon v-if="viewRatio !== 'lg'" @click="handleDrawer()"></v-app-bar-nav-icon>
+    <v-app-bar max-height="64" elevate-on-scroll class="headerPrimary" :dark="this.storeModule.isDarkTheme">
+        <v-app-bar-nav-icon v-if="!desktopView.has(viewRatio)" @click="handleDrawer()"></v-app-bar-nav-icon>
         <div style="width: 400px" class="d-flex align-center">
             <v-img
                 alt="Vuetify Logo"
@@ -14,14 +14,15 @@
                 <h1><strong>GitHub</strong> Jobs</h1>
             </v-toolbar-title>
         </div>
-        <v-tabs v-if="viewRatio === 'lg'">
+        <v-tabs v-if="desktopView.has(viewRatio)">
             <v-tab as="router-link" to="/">Home Page</v-tab>
             <v-tab as="router-link" to="/search">Job Search</v-tab>
         </v-tabs>
-        <div v-if="viewRatio === 'lg'" style="width: 200px">
-            <span>{{ currentThemeText }} </span>
+        <div v-if="desktopView.has(viewRatio)" style="width: 200px">
+            <span v-if="!theme"> <v-icon>mdi-white-balance-sunny </v-icon>{{ `  ` }} Light Theme </span>
+            <span v-if="theme"> <v-icon>mdi-weather-night</v-icon>{{ `  ` }} Dark Theme </span>
         </div>
-        <div v-if="viewRatio === 'lg'" style="width: 100px" class="mt-6">
+        <div v-if="desktopView.has(viewRatio)" style="width: 100px" class="mt-6">
             <v-switch color="secondary" @change="handleThemeSwitch"></v-switch>
         </div>
         <!--  -->
@@ -30,7 +31,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component } from 'vue-property-decorator';
 import store from '@/store/store';
 import { getModule } from 'vuex-module-decorators';
 
@@ -46,11 +47,15 @@ export default class NavBar extends Vue {
 
     handleThemeSwitch() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-        this.storeModule.changeStoreTheme();
+        this.storeModule.changeStoreTheme(this.$vuetify.theme.dark);
     }
 
     get drawer() {
         return this.storeModule.isSideBar;
+    }
+
+    get desktopView() {
+        return new Set(['lg', 'xl']);
     }
 
     get viewRatio() {
@@ -58,8 +63,8 @@ export default class NavBar extends Vue {
         return this.$vuetify.breakpoint.name;
     }
 
-    get currentThemeText() {
-        return this.storeModule.isDarkTheme ? 'Dark Theme' : 'Light Theme';
+    get theme() {
+        return this.storeModule.isDarkTheme;
     }
     handleDrawer() {
         this.storeModule.sideBarStatus();
