@@ -1,13 +1,13 @@
 <template>
     <v-app>
         <NavBar />
-        <v-responsive class="overflow-y-auto" max-height="calc(100vh - 64px)">
+        <v-responsive class="overflow-y-auto" max-height="calc(100vh - 120px)">
             <SideBar />
             <v-main>
                 <router-view />
             </v-main>
-            <Footer />
         </v-responsive>
+        <Footer />
     </v-app>
 </template>
 

@@ -15,8 +15,12 @@
             </v-toolbar-title>
         </div>
         <v-tabs v-if="desktopView.has(viewRatio)">
-            <v-tab as="router-link" to="/">Home Page</v-tab>
-            <v-tab as="router-link" to="/search">Job Search</v-tab>
+            <v-tab as="router-link" to="/">
+                <v-icon left>
+                    mdi-home-outline </v-icon
+                >Home Page</v-tab
+            >
+            <v-tab as="router-link" to="/search"> <v-icon left> mdi-briefcase-search </v-icon>Job Search</v-tab>
         </v-tabs>
         <div v-if="desktopView.has(viewRatio)" style="width: 200px">
             <span v-if="!theme"> <v-icon>mdi-white-balance-sunny </v-icon>{{ `  ` }} Light Theme </span>
@@ -60,6 +64,8 @@ export default class NavBar extends Vue {
 
     get viewRatio() {
         //xs, sm, md, lg, xl
+        console.log(`🚀 -> JobDetail -> getviewRatio -> this.$vuetify.breakpoint.name`, this.$vuetify.breakpoint.name);
+
         return this.$vuetify.breakpoint.name;
     }
 

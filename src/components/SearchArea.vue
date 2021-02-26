@@ -1,5 +1,5 @@
 <template>
-    <div style="margin: 20px auto" id="demo">
+    <div style="margin: 20px auto">
         <v-row class="accent rounded-t-lg" width="auto">
             <v-col col="auto">
                 <h3 style="text-align: center; font-family: Verdana, sans-serif">
@@ -7,7 +7,7 @@
                 </h3>
             </v-col>
         </v-row>
-        <v-row justify="center" class="accent rounded-b-lg">
+        <v-row justify="center" class="accent ">
             <v-col cols="auto">
                 <div align="center">
                     <v-text-field
@@ -42,13 +42,18 @@
                     ></v-text-field>
                 </div>
             </v-col>
+            <!-- <div>
+                <v-col cols="auto"> </v-col>
+            </div> -->
+        </v-row>
+        <v-row justify="center" class="accent rounded-b-lg">
             <v-col cols="auto">
                 <div align="center" class="my-3" @click="handleSearch">
                     <v-btn>Search</v-btn>
                 </div>
             </v-col>
-            <v-col cols="auto" v-if="isClearAvailable">
-                <div align="center" class="my-3" @click="handleClearSearch">
+            <v-col cols="auto">
+                <div v-if="isClearAvailable" align="center" class="my-3" @click="handleClearSearch">
                     <v-btn>Clear</v-btn>
                 </div>
             </v-col>
