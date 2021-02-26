@@ -75,6 +75,7 @@ export default class SearchArea extends Vue {
 
     async created() {
         if (!this.storeModule) this.storeModule = getModule(store, this.$store);
+        console.log('location', Intl.DateTimeFormat().resolvedOptions().timeZone);
     }
 
     @Emit('searchData')

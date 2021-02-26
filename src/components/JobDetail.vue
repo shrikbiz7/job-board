@@ -180,7 +180,6 @@ export default class JobDetail extends Vue {
 
     created() {
         if (!this.storeModule) this.storeModule = getModule(store, this.$store);
-        // if (this.jobData.location?.toLowerCase() === 'remote') console.log(this.jobData);
     }
 
     get viewRatio() {
@@ -189,7 +188,6 @@ export default class JobDetail extends Vue {
     }
 
     ellipsify(str: string) {
-        console.log(this.jobData.how_to_apply.length);
         const requiredLength = 400;
         return str.length > requiredLength ? str.substring(0, requiredLength) + '...' : str;
     }

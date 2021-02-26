@@ -49,7 +49,19 @@ export default class JobBoard extends Vue {
     async created() {
         if (!this.storeModule) this.storeModule = getModule(store, this.$store);
         await this.storeModule.getGitJobData();
-        this.apiData = this.storeModule.gitJobData;
+        this.apiData = await this.storeModule.gitJobData;
+        this.numberOfJobList =
+            this.viewRatio == 'xl'
+                ? 12
+                : this.viewRatio == 'lg'
+                ? 9
+                : this.viewRatio == 'xs' || this.viewRatio == 'sm'
+                ? 8
+                : 10;
+    }
+    get viewRatio() {
+        //xs, sm, md, lg, xl
+        return this.$vuetify.breakpoint.name;
     }
 
     async mounted() {
