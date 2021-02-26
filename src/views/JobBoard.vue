@@ -7,6 +7,13 @@
                     <SearchArea @searchData="handleSearch($event)" @clearSearch="handlClearSearch" />
                 </v-card>
             </v-container>
+            <v-container v-if="!jobData.length">
+                <v-row justify="center">
+                    <v-col cols="auto">
+                        <v-banner width="100%" icon="mdi-alert-circle-outline">No data available</v-banner>
+                    </v-col>
+                </v-row>
+            </v-container>
             <v-container v-if="jobData.length">
                 <v-row justify="center" class=" mb-10">
                     <v-col v-for="job in jobData" :key="job.id" cols="auto">
