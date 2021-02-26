@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-main v-if="true" class="primary">
+        <v-main v-if="true" class="primary" id="job-board">
             <v-container>
                 <v-card elevation="4">
                     <!-- search area -->
@@ -15,9 +15,9 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row v-if="isShowMore" justify="center" class=" mb-10">
+                <v-row v-if="isShowMore" justify="center" id="view-more" class="mb-10">
                     <v-col cols="auto">
-                        <v-btn @click="addJobData" color="accent">
+                        <v-btn @click="addJobData" id="view-more" color="accent">
                             View More
                         </v-btn>
                     </v-col>

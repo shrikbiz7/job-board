@@ -11,6 +11,7 @@
             <v-col cols="auto">
                 <div align="center">
                     <v-text-field
+                        id="search-area"
                         prepend-inner-icon="mdi-magnify"
                         clearable
                         style="width: 20rem"
@@ -33,6 +34,7 @@
                         @click:append-outer="sendMessage"
                     ></v-text-field> -->
                     <v-text-field
+                        id="search-area"
                         v-model="searchLocation"
                         prepend-inner-icon="mdi-map-marker"
                         clearable
@@ -42,19 +44,16 @@
                     ></v-text-field>
                 </div>
             </v-col>
-            <!-- <div>
-                <v-col cols="auto"> </v-col>
-            </div> -->
         </v-row>
         <v-row justify="center" class="accent rounded-b-lg">
             <v-col cols="auto">
-                <div align="center" class="my-3" @click="handleSearch">
-                    <v-btn>Search</v-btn>
+                <div align="center" class="my-3" id="search-btn" @click="handleSearch">
+                    <v-btn id="btn">Search</v-btn>
                 </div>
             </v-col>
             <v-col cols="auto">
-                <div v-if="isClearAvailable" align="center" class="my-3" @click="handleClearSearch">
-                    <v-btn>Clear</v-btn>
+                <div v-if="isClearAvailable" id="clear-btn" align="center" class="my-3" @click="handleClearSearch">
+                    <v-btn id="btn">Clear</v-btn>
                 </div>
             </v-col>
         </v-row>
@@ -66,7 +65,6 @@ import Vue from 'vue';
 import { Component, Emit, Prop } from 'vue-property-decorator';
 import store from '@/store/store';
 import { getModule } from 'vuex-module-decorators';
-import axios from 'axios';
 
 @Component
 export default class SearchArea extends Vue {
