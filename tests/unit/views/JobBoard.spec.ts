@@ -110,7 +110,7 @@ describe('JobBoard', () => {
         });
 
         it('should render view more button on 1 data set', () => {
-            expect(wrapper.find('#view-more').exists()).to.be.true;
+            expect(wrapper.find('#view-more').exists()).to.be.false;
         });
     });
 });
