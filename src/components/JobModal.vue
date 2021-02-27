@@ -23,7 +23,6 @@
                         Description:
                     </div>
                 </v-list-item-content>
-
                 <v-list-item-avatar tile size="80">
                     <v-img
                         v-if="jobData.company_logo"
@@ -38,7 +37,8 @@
                 </v-list-item-avatar>
             </v-list-item>
 
-            <v-responsive class="overflow-y-auto mx-5" max-height="200">
+            <v-divider class="mx-4"></v-divider>
+            <v-responsive class="overflow-y-auto mx-5 textBackGround" max-height="200">
                 <div>
                     <div v-html="jobData.description"></div>
                 </div>

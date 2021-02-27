@@ -1,7 +1,7 @@
 <template>
     <v-row justify="center" class="masthead">
         <v-col cols="auto button">
-            <v-btn as="router-link" to="/search" x-large text color="primary">
+            <v-btn as="router-link" to="/search" height="auto" x-large text color="primary">
                 <h1>Git Jobs</h1>
                 <v-icon x-large> mdi-arrow-right-thick</v-icon>
             </v-btn>
