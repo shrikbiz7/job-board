@@ -6,6 +6,7 @@ import { config } from '@vue/test-utils';
 import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import JobBoard from '@/views/JobBoard.vue';
+import { githubJobData } from '@/constants/githubJobData.ts';
 
 Vue.config.ignoredElements = [/v-.*/, /v.*/];
 // Vue.use(Vuetify);
@@ -21,6 +22,43 @@ let store: any;
 describe('JobBoard', () => {
     let wrapper: Wrapper<JobBoard>;
     let vuetify: any;
+    describe('App should render', () => {
+        state = {
+            STORE_KEY: '$_jobsearch',
+        };
+
+        store = new Vuex.Store({
+            state,
+        });
+
+        mocks = {
+            $vuetify: { breakpoint: { name: 'sm' } },
+            storeModule: {
+                gitJobData: githubJobData,
+                isDarkTheme: false,
+            },
+        };
+
+        // beforeEach(() => {
+        // });
+
+        before(() => {
+            vuetify = new Vuetify();
+            wrapper = shallowMount(JobBoard, {
+                vuetify,
+                mocks,
+                store,
+                localVue,
+            });
+        });
+
+        it('should render job-board', () => {
+            expect(wrapper.find('#job-board').exists()).to.be.true;
+        });
+        it('should render view more button', () => {
+            expect(wrapper.find('#view-more').exists()).to.be.true;
+        });
+    });
     describe('App should render', () => {
         state = {
             STORE_KEY: '$_jobsearch',
@@ -68,10 +106,7 @@ describe('JobBoard', () => {
             });
         });
 
-        it('should render job-board', () => {
-            expect(wrapper.find('#job-board').exists()).to.be.true;
-        });
-        it('should render view more button', () => {
+        it('should render view more button on 1 data set', () => {
             expect(wrapper.find('#view-more').exists()).to.be.false;
         });
     });
