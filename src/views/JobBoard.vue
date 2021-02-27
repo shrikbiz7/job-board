@@ -15,7 +15,7 @@
                 </v-row>
             </v-container>
             <!-- <v-container v-if="jobData.length" width="100%"> -->
-            <v-row justify="center">
+            <v-row v-if="totalResults > 0" justify="center">
                 <v-col cols="8" align="center" width="100%">
                     <v-alert border="bottom" class="accent ma-3" dark>
                         <v-avatar size="40" class="headerPrimary">
@@ -26,7 +26,7 @@
                 </v-col>
             </v-row>
             <!-- </v-container> -->
-            <v-container v-if="jobData.length > 0">
+            <v-container v-if="totalResults > 0">
                 <v-row justify="center" class=" mb-10">
                     <v-col v-for="job in jobData" :key="job.id" cols="auto">
                         <v-card elevation="10">
@@ -85,6 +85,7 @@ export default class JobBoard extends Vue {
                 ? 8
                 : 10;
     }
+
     get viewRatio() {
         //xs, sm, md, lg, xl
         return this.$vuetify.breakpoint.name;
@@ -113,16 +114,19 @@ export default class JobBoard extends Vue {
     }
 
     handleSearch({ position, location }: any) {
-        this.apiData = this.storeModule.gitJobData
-            .filter((job: any) => {
-                return (
-                    job.company.toLowerCase().includes(position.toLowerCase()) ||
-                    job.description.toLowerCase().includes(position.toLowerCase()) ||
-                    job.title.toLowerCase().includes(position.toLowerCase()) ||
-                    job.type.toLowerCase().includes(position.toLowerCase())
-                );
-            })
-            .filter((job: any) => job.location.toLowerCase().includes(location.toLowerCase()));
+        this.apiData = this.storeModule.gitJobData;
+        if (position || location) {
+            this.apiData = this.apiData
+                .filter((job: any) => {
+                    return (
+                        job.company.toLowerCase().includes(position.toLowerCase()) ||
+                        job.description.toLowerCase().includes(position.toLowerCase()) ||
+                        job.title.toLowerCase().includes(position.toLowerCase()) ||
+                        job.type.toLowerCase().includes(position.toLowerCase())
+                    );
+                })
+                .filter((job: any) => job.location.toLowerCase().includes(location.toLowerCase()));
+        }
         this.totalResults = this.apiData.length;
         this.jobData;
     }

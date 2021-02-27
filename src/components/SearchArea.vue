@@ -18,6 +18,7 @@
                         label="Search by job, or company"
                         outlined
                         v-model="searchPosition"
+                        @keyup.enter.exact="handleSearch"
                     ></v-text-field>
                 </div>
             </v-col>
@@ -41,6 +42,7 @@
                         style="width: 20rem"
                         label="City, state, or country"
                         outlined
+                        @keyup.enter.exact="handleSearch"
                     ></v-text-field>
                 </div>
             </v-col>
