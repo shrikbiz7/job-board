@@ -26,7 +26,7 @@
                 </v-col>
             </v-row>
             <!-- </v-container> -->
-            <v-container v-if="jobData.length">
+            <v-container v-if="jobData.length > 0">
                 <v-row justify="center" class=" mb-10">
                     <v-col v-for="job in jobData" :key="job.id" cols="auto">
                         <v-card elevation="10">
