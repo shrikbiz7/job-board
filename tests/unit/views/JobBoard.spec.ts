@@ -14,6 +14,7 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 localVue.config.ignoredElements = [/v-.*/, /v.*/];
 config.showDeprecationWarnings = false;
+declare const global: any;
 
 let state: any;
 let mocks: any;
@@ -44,6 +45,7 @@ describe('JobBoard', () => {
 
         before(() => {
             vuetify = new Vuetify();
+            global.requestAnimationFrame = (cb: any) => cb();
             wrapper = shallowMount(JobBoard, {
                 vuetify,
                 mocks,
@@ -98,6 +100,7 @@ describe('JobBoard', () => {
 
         before(() => {
             vuetify = new Vuetify();
+            global.requestAnimationFrame = (cb: any) => cb();
             wrapper = shallowMount(JobBoard, {
                 vuetify,
                 mocks,
