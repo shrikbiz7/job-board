@@ -57,6 +57,7 @@ describe('JobBoard', () => {
         it('should render job-board', () => {
             expect(wrapper.find('#job-board').exists()).to.be.true;
         });
+        wrapper.vm.$nextTick();
         it('should render view more button', () => {
             expect(wrapper.find('#view-more').exists()).to.be.true;
         });
