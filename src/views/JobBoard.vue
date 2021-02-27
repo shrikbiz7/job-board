@@ -10,14 +10,16 @@
             <v-container v-if="!jobData.length">
                 <v-row justify="center">
                     <v-col cols="auto">
-                        <v-banner width="100%" icon="mdi-alert-circle-outline">No data available</v-banner>
+                        <v-banner id="no-data-message" width="100%" icon="mdi-alert-circle-outline"
+                            >No data available</v-banner
+                        >
                     </v-col>
                 </v-row>
             </v-container>
             <!-- <v-container v-if="jobData.length" width="100%"> -->
             <v-row v-if="totalResults > 0" justify="center">
                 <v-col cols="8" align="center" width="100%">
-                    <v-alert border="bottom" class="accent ma-3" dark>
+                    <v-alert id="result-bar" border="bottom" class="accent ma-3" dark>
                         <v-avatar size="40" class="headerPrimary">
                             <span class="headline">{{ totalResults }}</span>
                         </v-avatar>
@@ -29,19 +31,19 @@
             <v-container v-if="totalResults > 0">
                 <v-row justify="center" class=" mb-10">
                     <v-col v-for="job in jobData" :key="job.id" cols="auto">
-                        <v-card elevation="10">
+                        <v-card id="jobs" elevation="10">
                             <JobDetail :jobData="job" />
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row v-if="isShowMore" justify="center" id="view-more" class="mb-10">
+                <v-row v-if="isShowMore" justify="center" class="mb-10">
                     <v-col cols="auto">
                         <v-btn @click="addJobData" id="view-more" color="accent">
                             View More
                         </v-btn>
                     </v-col>
                 </v-row>
-                <v-row v-if="!isShowMore" justify="center" id="view-more" class="mb-10">
+                <v-row v-if="!isShowMore" justify="center" class="mb-10">
                     <v-col cols="auto">
                         <v-banner>End of Job List</v-banner>
                     </v-col>
