@@ -1,9 +1,17 @@
 <template>
     <v-row justify="center" class="masthead">
         <v-col cols="auto button">
-            <v-btn as="router-link" to="/search" height="auto" x-large text color="primary">
+            <v-btn as="router-link" to="/search" height="200px" rounded x-large text color="primary">
+                <v-img
+                    alt="Vuetify Logo"
+                    class="shrink mr-2"
+                    contain
+                    src="@/assets/git.png"
+                    transition="scale-transition"
+                    maxWidth="100"
+                />
                 <h1>Git Jobs</h1>
-                <v-icon x-large> mdi-arrow-right-thick</v-icon>
+                <v-icon size="70" class="ml-5"> mdi-arrow-right-thick</v-icon>
             </v-btn>
         </v-col>
     </v-row>

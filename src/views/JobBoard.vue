@@ -10,9 +10,9 @@
             <v-container v-if="!jobData.length">
                 <v-row justify="center">
                     <v-col cols="auto">
-                        <v-banner id="no-data-message" width="100%" icon="mdi-alert-circle-outline"
-                            >No data available</v-banner
-                        >
+                        <v-banner id="no-data-message" width="100%" icon="mdi-alert-circle-outline">
+                            No data available
+                        </v-banner>
                     </v-col>
                 </v-row>
             </v-container>
